@@ -3,13 +3,13 @@ import 'dart:html' as html;
 
 import 'package:flutter_web_plugins/flutter_web_plugins.dart';
 
-class TataNeuUrlStrategy extends UrlStrategy {
-  /// Creates an instance of [TataNeuUrlStrategy].
+class CustomUrlStrategy extends UrlStrategy {
+  /// Creates an instance of [CustomUrlStrategy].
   ///
   /// The [PlatformLocation] parameter is useful for testing to mock out browser
   /// interactions.
 
-  const TataNeuUrlStrategy(
+  const CustomUrlStrategy(
       [this._platformLocation = const BrowserPlatformLocation()]);
 
   final PlatformLocation _platformLocation;

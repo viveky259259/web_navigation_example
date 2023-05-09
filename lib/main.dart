@@ -6,17 +6,12 @@ import 'package:web_navigation/custom_url_strategy.dart';
 import 'package:web_navigation/feedback.dart';
 
 void main() {
-  setUrlStrategy(const TataNeuUrlStrategy());
+  setUrlStrategy(const CustomUrlStrategy());
   print('main()');
   runApp(const MyApp());
 }
 
 
-final routes=<RouteBase>[
-  GoRoute(path: '/',builder: (_,__)=>MyHomePage(title: 'Go Router')),
-  GoRoute(path: '/about-us',builder: (_,__)=>AboutUsPage()),
-  GoRoute(path: '/feedback',builder: (_,__)=>FeedbackPage()),
-];
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
@@ -24,12 +19,12 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     print('buildApp()');
-    return MaterialApp.router(
+    return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      routerConfig: GoRouter(routes: routes),
+      home: MyHomePage(title: 'Web Demo',),
     );
   }
 }
