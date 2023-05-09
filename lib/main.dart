@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_web_plugins/flutter_web_plugins.dart';
-import 'package:routemaster/routemaster.dart';
+import 'package:go_router/go_router.dart';
 import 'package:web_navigation/about_us.dart';
 import 'package:web_navigation/custom_url_strategy.dart';
 import 'package:web_navigation/feedback.dart';
@@ -12,12 +12,11 @@ void main() {
 }
 
 
-final routes=RouteMap(routes: {
-  '/':(info)=>MaterialPage(child: MyHomePage(title: 'Web Demo'),),
-  '/feedback':(_)=>MaterialPage(child: FeedbackPage()),
-  '/about-us':(_)=>MaterialPage(child: AboutUsPage())
-
-});
+final routes=<RouteBase>[
+  GoRoute(path: '/',builder: (_,__)=>MyHomePage(title: 'Go Router')),
+  GoRoute(path: '/about-us',builder: (_,__)=>AboutUsPage()),
+  GoRoute(path: '/feedback',builder: (_,__)=>FeedbackPage()),
+];
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
@@ -30,8 +29,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      routerDelegate:RoutemasterDelegate(routesBuilder:  (_)=> routes),
-      routeInformationParser: RoutemasterParser(),
+      routerConfig: GoRouter(routes: routes),
     );
   }
 }
@@ -66,6 +64,7 @@ class _MyHomePageState extends State<MyHomePage> {
       // called again, and so nothing would appear to happen.
       _counter++;
     });
+    GoRouter.of(context).push('/about-us');
   }
 
   @override
